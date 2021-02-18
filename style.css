@@ -1,4 +1,8 @@
-/* ================= Global - reset de atributos ================= */ 
+/* ================= Global - reset de atributos e var ================= */ 
+:root {
+    --dark-blue: #363f5f;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -14,7 +18,7 @@
 h2 {
     margin-top: 3.2rem;
     margin-bottom: 0.8rem;
-    color: #363f5f;
+    color: var(--dark-blue);
 
     font-weight: normal;
 }
@@ -47,7 +51,35 @@ header {
     margin-top: 0;
 }
 
-/* ================= Footer================= */ 
+/* ================= Cards ================= */ 
+.card {
+    background: white;
+    padding: 1.5rem 2rem;
+    border-radius: 0.25rem;
+
+    margin-bottom: 2rem;
+
+    color: var(--dark-blue);
+}
+
+.card h3 {
+    font-weight: normal;
+    font-size: 1rem;
+}
+
+.card p {
+    font-size: 2rem;
+    line-height: 3rem; /* separação entre as linhas de um texto*/
+
+    margin-top: 1rem;
+}
+
+.card.total {
+    background: #49AA26;
+    color: white;
+}
+
+/* ================= Footer ================= */ 
 footer {
     text-align: center;
 }
