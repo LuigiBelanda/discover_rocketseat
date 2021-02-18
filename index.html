@@ -2,61 +2,82 @@
 <!-- lang é um atributo, identifica a linguagem do documento -->
 <html lang="pt-br">
 
-    <head>
-        <!-- aqui identificamos qual o padrão de caracteres que estamo usando, neste caso UTF-8-->
-        <meta charset="UTF-8"> 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>dev.finance$</title>
-    </head>
-    
-    <body>
-        
+<head>
+    <!-- aqui identificamos qual o padrão de caracteres que estamo usando, neste caso UTF-8-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dev.finance$</title>
+</head>
+
+<body>
+
+    <!-- as tags header, main e footer são tags semânticas, servem para estruturar melhor o site -->
+    <!-- header = cabeçalho -->
+    <!-- main = conteúdo principal da página -->
+    <!-- footer = rodapé -->
+    <!-- section = sessão de conteúdos -->
+
+    <header>
         <h1>dev.finance$</h1>
+    </header>
 
-        <h2>Balanço</h2>
-        <h3>Entradas</h3>
-        <p>R$ 5.000,00</p>
+    <main>
+        <section>
+            <h2>Balanço</h2>
 
-        <h3>Saídas</h3>
-        <p>R$ 2.000,00</p>
+            <div>
+                <h3>Entradas</h3>
+                <p>R$ 5.000,00</p>
+            </div>
 
-        <h3>Total</h3>
-        <p>R$ 3.000,00</p>
+            <div>
+                <h3>Saídas</h3>
+                <p>R$ 2.000,00</p>
+            </div>
+            
+            <div>
+                <h3>Total</h3>
+                <p>R$ 3.000,00</p>
+            </div>
+        </section>
 
-        <h2>Transações</h2>
+        <section>
+            <h2>Transações</h2>
 
-        <!-- tabela de dados das entradas e saídas -->
-        <!-- tr = uma linha -->
-        <!-- th e td = valores que estão em uma determinada linha-->
-        <table>
-            <thead>
-                <tr>
-                    <th>Descrição</th>
-                    <th>Valor</th>
-                    <th>Data</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Luz</td>
-                    <td>- R$ 500,00</td>
-                    <td>23/01/2021</td>
-                </tr>
-                <tr>
-                    <td>Criação Website</td>
-                    <td>R$ 5000,00</td>
-                    <td>23/01/2021</td>
-                </tr>
-                <tr>
-                    <td>Internet</td>
-                    <td>- R$ 200,00</td>
-                    <td>23/01/2021</td>
-                </tr>
-            </tbody>
-        </table>
+            <!-- tabela de dados das entradas e saídas -->
+            <!-- tr = uma linha -->
+            <!-- th e td = valores que estão em uma determinada linha-->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Descrição</th>
+                        <th>Valor</th>
+                        <th>Data</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Luz</td>
+                        <td>- R$ 500,00</td>
+                        <td>23/01/2021</td>
+                    </tr>
+                    <tr>
+                        <td>Criação Website</td>
+                        <td>R$ 5000,00</td>
+                        <td>23/01/2021</td>
+                    </tr>
+                    <tr>
+                        <td>Internet</td>
+                        <td>- R$ 200,00</td>
+                        <td>23/01/2021</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
 
-        <p>dev.finance$</p>
+    <footer>dev.finance$</footer>
 
-    </body>
+</body>
 
 </html>
