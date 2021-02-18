@@ -1,10 +1,24 @@
+/* ================= Global - reset de atributos ================= */ 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* ================= Body ================= */ 
 body {
     background: #f0f2f5;
     font-family: 'Poppins', sans-serif;
+}
+
+/* ================= Header ================= */ 
+header {
+    background: #2D4A22;
+    padding: 2rem 0 10rem;
+    text-align: center;
+}
+
+#logo {
+    color: #fff;
+    font-weight: 100;
 }
