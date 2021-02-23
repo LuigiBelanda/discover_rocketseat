@@ -20,37 +20,39 @@ const Modal = {
 
 }
 
-// um array de objetos
-const transactions = [
-    {
-        id: 1,
-        description: 'Luz',
-        amount: -50000,
-        date: '23/01/2021',
-    }, 
-        
-    {
-        id: 2,
-        description: 'Website',
-        amount: 500000,
-        date: '23/01/2021', 
-    }, 
-
-    {
-        id: 3,
-        description: 'Internet',
-        amount: -20000,
-        date: '23/01/2021',
-    }
-
-]  
-
 const Transaction = {
-    all: transactions,
+    all: [
+        {
+            description: 'Luz',
+            amount: -50000,
+            date: '23/01/2021',
+        }, 
+            
+        {
+            description: 'Website',
+            amount: 500000,
+            date: '23/01/2021', 
+        }, 
     
+        {
+            description: 'Internet',
+            amount: -20000,
+            date: '23/01/2021',
+        }
+    
+    ],
+
     add(transaction){
         Transaction.all.push(transaction)
-    }
+
+        App.reload()
+    },
+
+    remove(index){
+        Transaction.all.splice(index, 1)
+
+        App.reload()
+    },
 
     incomes(){
         let income = 0;
@@ -133,6 +135,10 @@ const DOM = {
         document
             .getElementById('totalDisplay')
             .innerHTML =  Utils.formatCurrency(Transaction.total())
+    },
+
+    clearTransactions(){
+        DOM.transactionsContainer.innerHTML = ""
     }
 }
 
@@ -153,8 +159,55 @@ const Utils = {
     }
 }
 
-transactions.forEach(function (transaction) {
-    DOM.addTransaction(transaction)
-}) // forEach para cada elemento ele executa algo que for declarado
+const Form = {
 
-DOM.updateBalance()
+    description: document.querySelector('input#description'),
+    description: document.querySelector('input#amount'),
+    description: document.querySelector('input#date'),
+
+    getValues(){
+        return {
+            description: Form.description.value,
+            amount: Form.amount.value,
+            date: Form.date.value
+        }
+    },
+
+    validateFields(){
+        const { description, amount, date } = Form.getValues()
+
+        if (description.trim() === "" || 
+            amount.trim() === "" || 
+            date.trim() === ""){
+                throw new Error("Por favor, preencha todos os campos")
+        }
+    },
+
+    submit(event) {
+        event.preventDefault()
+
+        try {
+            Form.validateFields()   
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+}
+
+const App = {
+    init(){
+        Transaction.all.forEach(transaction => {
+            DOM.addTransaction(transaction)
+        }) // forEach para cada elemento ele executa algo que for declarado
+
+        DOM.updateBalance()
+    },
+
+    reload(){
+        DOM.clearTransactions()
+
+        App.init()
+    }
+}
+
+App.init()
