@@ -46,17 +46,43 @@ const transactions = [
 ]  
 
 const Transaction = {
+    all: transactions,
+    
+    add(transaction){
+        Transaction.all.push(transaction)
+    }
 
     incomes(){
-        // Somar as entradas
+        let income = 0;
+        // pegar todas as transações 
+        // para cada transação verificar se a transação é maior que 0
+        Transaction.all.forEach(transaction => {
+            // se for maior que 0
+            if (transaction.amount > 0) {
+                // somar a uma var e retornar a var
+                income += transaction.amount;
+            }
+        })
+        return income
     },
 
     expenses(){
-        // Somar as saídas
+        let expense = 0;
+        // pegar todas as transações 
+        // para cada transação verificar se a transação é maior que 0
+        Transaction.all.forEach(transaction => {
+            // se for menor que 0
+            if (transaction.amount < 0) {
+                // somar a uma var e retornar a var
+                expense += transaction.amount;
+            }
+        })
+        return expense
     },
 
     total(){
         // Entradas - saídas
+        return Transaction.incomes() + Transaction.expenses()
     }
 
 }
@@ -80,7 +106,7 @@ const DOM = {
 
         const html = `
         <td class="description">${transaction.description}</td>
-        <td class="${CSSclass}">${transaction.amount}</td>
+        <td class="${CSSclass}">${amount}</td>
         <td class="date">${transaction.date}</td>
         <td>
             <img src="./assets/minus.svg" alt="remover transação">
@@ -93,15 +119,42 @@ const DOM = {
         // ${transaction.date} == a informação que eu quero mostrar na tela 
 
         return html
+    },
+
+    updateBalance(){
+        document
+            .getElementById('incomeDisplay')
+            .innerHTML = Utils.formatCurrency(Transaction.incomes())
+
+        document
+            .getElementById('expenseDisplay')
+            .innerHTML =  Utils.formatCurrency(Transaction.expenses())
+
+        document
+            .getElementById('totalDisplay')
+            .innerHTML =  Utils.formatCurrency(Transaction.total())
     }
 }
 
 const Utils = {
     formatCurrency(value){
-        const signal = Number(value)
+        const signal = Number(value) < 0 ? "-" : ""
+
+        value = String(value).replace(/\D/g, "") 
+
+        value = Number(value) / 100
+
+        value = value.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL"
+        })
+
+        return(signal + value)
     }
 }
 
 transactions.forEach(function (transaction) {
     DOM.addTransaction(transaction)
 }) // forEach para cada elemento ele executa algo que for declarado
+
+DOM.updateBalance()
